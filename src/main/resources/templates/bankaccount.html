@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html layout:decorate="~{fragments/main_layout}"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+
+<div class="container" layout:fragment="content">
+    <h1>Register Customer</h1>
+    <form action="#" method="POST" th:action="@{/bankaccount}">
+
+        <div class="form-group">
+            <label for="inputId">Id</label>
+            <input class="form-control" id="inputId" name="id" type="input">
+        </div>
+
+        <div class="form-group">
+            <label for="inputCustomerId">Customer Id</label>
+            <input class="form-control" id="inputCustomerId" name="customerId" type="input">
+        </div>
+
+        <div class="form-group">
+            <label for="inputType">Type</label>
+            <input class="form-control" id="inputType" name="type" type="input">
+        </div>
+
+        <div class="form-group">
+            <label for="inputBalance">Balance</label>
+            <input class="form-control" id="inputBalance" name="balance" type="number">
+        </div>
+
+        <div class="form-group">
+            <input class="btn btn-primary" type="submit">
+        </div>
+    </form>
+    <hr>
+
+    <h1>All Customers</h1>
+    <table class="table table-bordered">
+        <thead class="thead-light">
+        <tr>
+            <th>Id</th>
+            <th>Customer Id</th>
+            <th>Type</th>
+            <th>Balance</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="bankAccount: ${allBankAccount}">
+            <td th:text="${bankAccount.id}"></td>
+            <td th:text="${bankAccount.customerId}"></td>
+            <td th:text="${bankAccount.type}"></td>
+            <td th:text="${bankAccount.balance}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
