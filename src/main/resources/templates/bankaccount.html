@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html layout:decorate="~{fragments/main_layout}"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+
+<div class="container" layout:fragment="content">
+
+    <h1>Open Bank Account</h1>
+    <form method="POST" th:action="@{/bankaccount}">
+
+        <div class="form-group">
+            <label for="inputCustomer">Customer Id</label>
+            <input class="form-control" id="inputCustomer" name="customerId" type="text">
+        </div>
+
+        <div class="form-group">
+            <label for="inputType">Type</label>
+            <input class="form-control" id="inputType" name="type" type="text">
+        </div>
+
+        <div class="form-group">
+            <label for="inputBalance">Balance</label>
+            <input class="form-control" id="inputBalance" name="balance" type="text">
+        </div>
+
+        <div class="form-group">
+            <input class="btn btn-primary" type="submit">
+        </div>
+
+    </form>
+    <hr>
+
+    <h1>All Bank Accounts</h1>
+
+    <table class="table table-bordered table-striped">
+        <thead class="thead-light">
+        <tr>
+            <th>Id</th>
+            <th>CustomerId</th>
+            <th>Type</th>
+            <th>Balance</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="account : ${bankaccounts}">
+            <td th:text="${account.id}"></td>
+            <td th:text="${account.customerId}"></td>
+            <td th:text="${account.type}"></td>
+            <td th:text="${account.balance}"></td>
+            <td>
+                <a th:href="@{/bankaccount/edit/{id}(id=${account.id})}">Edit</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
